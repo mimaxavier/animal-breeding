@@ -1,6 +1,7 @@
 package br.com.farmmanagement.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,14 +16,37 @@ public class BreedingAnimalTest {
             2L,
             1L,
             BreedingRole.FEMALE,
-            BreedingStatus.PREGNANT
+            BreedingStatus.AVAILABLE_FOR_BREEDING
         
         );
 
         assertEquals(2L, breedingAnimal.getId());
         assertEquals(1L, breedingAnimal.getAnimalId());
         assertEquals(BreedingRole.FEMALE, breedingAnimal.getBreedingRole());
-        assertEquals(BreedingStatus.PREGNANT, breedingAnimal.getBreedingStatus());
+        assertEquals(BreedingStatus.AVAILABLE_FOR_BREEDING, breedingAnimal.getBreedingStatus());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenAnimalIdisNull() {
+
+        assertThrows(
+            IllegalArgumentException.class, 
+        () -> new BreedingAnimal(1L, null, BreedingRole.FEMALE, BreedingStatus.AVAILABLE_FOR_BREEDING)
+        
+    );
+    
+    }
+
+    @Test
+    void shouldThrowExceptionWhenBreedingRoleisnull() {
+
+        assertThrows(IllegalArgumentException.class, 
+            () -> new BreedingAnimal(
+                1L, 
+                3L, 
+                null, 
+                BreedingStatus.AVAILABLE_FOR_BREEDING)          
+            );
     }
 
 }

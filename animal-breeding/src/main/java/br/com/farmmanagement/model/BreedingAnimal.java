@@ -11,6 +11,14 @@ public class BreedingAnimal {
 
 
     public BreedingAnimal(Long id, Long animalId, BreedingRole breedingRole, BreedingStatus breedingStatus) {
+
+        if (animalId == null) {
+            throw new IllegalArgumentException("Animal ID cannot be null");
+        }
+        if (breedingRole == null) {
+            throw new IllegalArgumentException("Breeding role cannot be null");
+        }
+
         this.id = id;
         this.animalId = animalId;
         this.breedingRole = breedingRole;
@@ -32,5 +40,9 @@ public class BreedingAnimal {
     public BreedingStatus getBreedingStatus() {
         return breedingStatus;
     }
+
+    // setters
+
+    // métodos da entidade
 
 }
