@@ -31,10 +31,26 @@ public class BreedingAnimalTest {
 
         assertThrows(
             IllegalArgumentException.class, 
-        () -> new BreedingAnimal(1L, null, BreedingRole.FEMALE, BreedingStatus.AVAILABLE_FOR_BREEDING)
+        () -> new BreedingAnimal(
+            1L, 
+            null, 
+            BreedingRole.FEMALE, 
+            BreedingStatus.AVAILABLE_FOR_BREEDING)
         
     );
     
+    }
+
+    @Test
+    void shouldThrowExceptionWhenAnimalislessThanOrEqualToZero() {
+        assertThrows(IllegalArgumentException.class, () -> new BreedingAnimal(
+            1L, 
+            -4L, 
+            BreedingRole.FEMALE, 
+            BreedingStatus.AVAILABLE_FOR_BREEDING)   
+    );
+
+
     }
 
     @Test
@@ -47,6 +63,13 @@ public class BreedingAnimalTest {
                 null, 
                 BreedingStatus.AVAILABLE_FOR_BREEDING)          
             );
+    }
+    @Test
+    void shouldThrowExceptionWhenBreedingStatusIsNull() {
+        assertThrows(IllegalArgumentException.class, () -> new BreedingAnimal(
+            1L, 
+            3L, BreedingRole.FEMALE, null)  
+        );
     }
 
 }

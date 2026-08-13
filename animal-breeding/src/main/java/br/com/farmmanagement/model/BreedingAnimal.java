@@ -15,8 +15,14 @@ public class BreedingAnimal {
         if (animalId == null) {
             throw new IllegalArgumentException("Animal ID cannot be null");
         }
+        if (animalId <= 0) {
+            throw new IllegalArgumentException("Animal ID must be greater than 0");
+        }
         if (breedingRole == null) {
             throw new IllegalArgumentException("Breeding role cannot be null");
+        }
+        if (breedingStatus == null) {
+            throw new IllegalArgumentException("Status cannot be null");
         }
 
         this.id = id;
@@ -44,5 +50,6 @@ public class BreedingAnimal {
     // setters
 
     // métodos da entidade
+
 
 }

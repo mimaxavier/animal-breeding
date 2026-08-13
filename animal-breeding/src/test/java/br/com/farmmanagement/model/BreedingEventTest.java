@@ -1,5 +1,6 @@
 package br.com.farmmanagement.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
@@ -24,4 +25,28 @@ public class BreedingEventTest {
         assertEquals(LocalDate.of(2025, 3, 12), breedingEvent.getBreedingDate());
 
     }
+
+    @Test
+    void shouldThrowExceptionWhenMatingTypeisNull() {
+        assertThrows(IllegalArgumentException.class, () -> new BreedingEvent(
+            2L, 
+            3L, 4L, 
+            null, 
+            LocalDate.of(2025, 3, 2)
+        )
+    );
+}
+@Test
+void shouldThrowExceptionWhenDateIsAfterToday() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> new BreedingEvent(
+            2L,
+            3L,
+            4L,
+            MatingType.INSEMINATION,
+            LocalDate.of(2026, 11, 12)
+        )
+    );
+}
 }

@@ -12,6 +12,16 @@ public class BreedingEvent {
     private LocalDate breedingDate;
 
     public BreedingEvent(Long id, Long femaleBreedingAnimalId, Long maleBreedingAnimalId, MatingType matingType, LocalDate breedingDate) {
+
+        if (matingType == null) {
+            throw new IllegalArgumentException("Mating Type cannot be null");
+        }
+
+        if (breedingDate.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Breeding date cannot be in the future");
+        }
+
+
         this.id = id;
         this.femaleBreedingAnimalId = femaleBreedingAnimalId;
         this.maleBreedingAnimalId = maleBreedingAnimalId;
