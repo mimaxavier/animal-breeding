@@ -18,6 +18,20 @@ public class Calving {
         CalvingType calvingType,
         CalvingStatus calvingStatus,
         LocalDate calvingDate) {
+            if (pregnancyDiagnosisId == null) {
+                throw new IllegalArgumentException("Pregnancy diagnosis Id cannot be null");
+            }
+
+            if (pregnancyDiagnosisId<=0) {
+                throw new IllegalArgumentException("Pregnancy Diagnosis ID must be greater than 0");
+            }
+
+            if (calvingDate.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException(
+                    "Calving Date cannot be in the future"
+                );
+            }
+
             this.id = id;
             this.pregnancyDiagnosisId = pregnancyDiagnosisId;
             this.calvingType = calvingType;

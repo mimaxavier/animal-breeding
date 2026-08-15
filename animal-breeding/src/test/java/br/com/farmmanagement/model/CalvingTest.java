@@ -1,5 +1,6 @@
 package br.com.farmmanagement.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
@@ -26,11 +27,58 @@ void setUp() {
 
     @Test
     void shouldCreateCalvingSuccessfully() {
+
+        Calving calving = new Calving (
+        2L, 
+        1L,
+        CalvingType.NORMAL,
+        CalvingStatus.COMPLETED,
+        LocalDate.of(2025, 4, 20)
+    
+        );
+
         assertEquals(2L, calving.getId());
         assertEquals(1L, calving.getPregnancyDiagnosisId());
         assertEquals(CalvingType.NORMAL, calving.getCalvingType());
         assertEquals(CalvingStatus.COMPLETED, calving.getCalvingStatus());
         assertEquals(LocalDate.of(2025, 4, 20), calving.getCalvingDate());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenPregnancyDiagnosisIdIsNull() {
+        assertThrows(IllegalArgumentException.class, () -> new Calving (
+        2L, 
+        null,
+        CalvingType.NORMAL,
+        CalvingStatus.COMPLETED,
+        LocalDate.of(2025, 4, 20)
+        )
+    );
+    }
+
+    @Test
+    void shouldThrowExceptionWhenPregnancyDiagnosisIdIsGreaterOrEqualsToZero() {
+        assertThrows(IllegalArgumentException.class, () -> new Calving(
+        2L, 
+        -2L,
+        CalvingType.NORMAL,
+        CalvingStatus.COMPLETED,
+        LocalDate.of(2025, 4, 20)
+        )
+    );
+    }
+
+    @Test
+    void shouldThrowExceptionWhenCalvingDateIsAfterToday() {
+        assertThrows(IllegalArgumentException.class, 
+            () -> new Calving(
+        2L, 
+        -2L,
+        CalvingType.NORMAL,
+        CalvingStatus.COMPLETED,
+        LocalDate.of(2025, 11, 20)
+            )
+        );
     }
 
 }
