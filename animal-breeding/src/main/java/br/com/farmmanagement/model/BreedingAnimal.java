@@ -1,9 +1,17 @@
 package br.com.farmmanagement.model;
 
 import br.com.farmmanagement.enums.BreedingStatus;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import br.com.farmmanagement.enums.BreedingRole;
 
+@Entity
 public class BreedingAnimal {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long animalId;
     private BreedingRole breedingRole;
