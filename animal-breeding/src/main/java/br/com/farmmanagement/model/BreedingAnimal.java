@@ -59,5 +59,15 @@ public class BreedingAnimal {
 
     // métodos da entidade
 
+    @Override
+    public String toString() {
+        return "BreedingAnimal{" +
+            "id=" + id +
+            ", animalId=" + animalId +
+            ", breedingRole=" + breedingRole +
+            ", breedingStatus=" + breedingStatus +
+            '}';
+    }
+
 
 }
