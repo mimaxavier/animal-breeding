@@ -3,8 +3,16 @@ package br.com.farmmanagement.model;
 import java.time.LocalDate;
 
 import br.com.farmmanagement.enums.StatusPregnancy;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class PregnancyDiagnosis {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long breedingEventId;
     private StatusPregnancy statusPregnancy;

@@ -4,8 +4,17 @@ import java.time.LocalDate;
 
 import br.com.farmmanagement.enums.CalvingStatus;
 import br.com.farmmanagement.enums.CalvingType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+
+@Entity
 public class Calving {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long pregnancyDiagnosisId;
     private CalvingType calvingType;
