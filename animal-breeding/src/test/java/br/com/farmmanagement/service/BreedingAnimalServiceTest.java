@@ -8,6 +8,9 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Optional;
 
 import br.com.farmmanagement.enums.BreedingRole;
 import br.com.farmmanagement.enums.BreedingStatus;
@@ -46,5 +49,20 @@ public class BreedingAnimalServiceTest {
         assertEquals(breedingAnimal, saved);
 
         verify(repository).save(breedingAnimal);
-;    }
+    }
+
+    @Test
+    void shouldFindBreedingAnimalById() {
+
+        Long id = 1L;
+
+        when(repository.findById(id)).thenReturn(Optional.of(breedingAnimal));
+
+        Optional<BreedingAnimal> result = service.findById(id);
+
+        assertTrue(result.isPresent());
+
+        verify(repository).findById(id);
+
+    }
 }
