@@ -1,6 +1,5 @@
 package br.com.farmmanagement.service;
 
-import org.h2.command.dml.MergeUsing.When;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

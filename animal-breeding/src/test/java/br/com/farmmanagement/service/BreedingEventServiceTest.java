@@ -8,6 +8,10 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.verify;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+import java.util.Optional;
 
 import java.time.LocalDate;
 
@@ -27,7 +31,8 @@ public class BreedingEventServiceTest {
 
         breedingEvent = new BreedingEvent(
             null, 
-            2L, 4L, 
+            2L, 
+            4L, 
             MatingType.INSEMINATION, 
             LocalDate.of(2026, 3, 4));
 
@@ -48,6 +53,44 @@ public class BreedingEventServiceTest {
         assertEquals(breedingEvent, saved);
 
         verify(repository).save(breedingEvent);
+    }
+
+    @Test
+    void shouldFindBreedingEventById() {
+        Long id = 1L;
+
+        when(repository.findById(id)).thenReturn(Optional.of(breedingEvent));
+
+        Optional<BreedingEvent> result = service.findById(id);
+
+        assertTrue(result.isPresent());
+
+        verify(repository).findById(id);
+
+    }
+
+    @Test 
+    void shouldFindAllBreedingEvents() {
+        
+        List<BreedingEvent> breedingEvents = List.of(breedingEvent);
+
+        when(repository.findAll()).thenReturn(breedingEvents);
+
+        List<BreedingEvent> result = service.findAll();
+
+        assertEquals(breedingEvents, result);
+        verify(repository).findAll();
+    }
+
+    @Test 
+    void shouldDeleteById(){
+        
+        Long id = 1L;
+
+        service.deleteById(id);
+
+        verify(repository).deleteById(id);
+        
     }
 
 }
