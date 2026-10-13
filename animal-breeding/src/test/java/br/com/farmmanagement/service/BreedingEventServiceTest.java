@@ -21,6 +21,11 @@ import br.com.farmmanagement.repository.BreedingEventRepository;
 
 public class BreedingEventServiceTest {
     
+    @Mock 
+    private BreedingEventRepository repository;
+
+    private BreedingEvent breedingEvent;
+    
     private BreedingEventService service;
 
     @BeforeEach
@@ -37,11 +42,6 @@ public class BreedingEventServiceTest {
             LocalDate.of(2026, 3, 4));
 
     }
-
-    @Mock 
-    private BreedingEventRepository repository;
-
-    private BreedingEvent breedingEvent;
 
     @Test 
     void shouldSaveBreedingEvent() {
